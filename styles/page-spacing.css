@@ -1,0 +1,379 @@
+/* Shared content inset, slightly wider than the original header spacing. */
+body { --content-gutter: clamp(24px, 4vw, 64px); }
+body > header {
+  box-sizing: border-box;
+  padding-left: var(--content-gutter);
+  padding-right: var(--content-gutter);
+}
+header > nav { padding-right: 0; }
+body > .welcome {
+  box-sizing: border-box;
+  width: calc(100% - 2 * var(--content-gutter));
+  margin-left: auto;
+  margin-right: auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 64px);
+}
+.welcome > :is(.welcome-image,.welcome-text) {
+  width: 100%;
+  min-width: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+.about-cover > .info-sections > .info-cards {
+  width: calc(100% - 2 * var(--content-gutter));
+}
+.gallery-full > .gallery {
+  box-sizing: border-box;
+  left: var(--content-gutter);
+  right: var(--content-gutter);
+  width: auto;
+  margin-inline: 0;
+}
+.gallery-full-info > .gallery {
+  box-sizing: border-box;
+  width: calc(100% - 2 * var(--content-gutter));
+  margin-inline: auto;
+}
+body > .footer {
+  box-sizing: border-box;
+  width: 100%;
+  padding-left: var(--content-gutter);
+  padding-right: var(--content-gutter);
+}
+/* Keep the timeline's alternating composition; align its outer text bounds. */
+.timeline-text { box-sizing: border-box; }
+.timeline-text > .timeline-header {
+  padding-inline: var(--content-gutter);
+}
+@media (min-width: 1000px) {
+  .timeline-text > .timeline-mid { margin-left: var(--content-gutter); }
+  .timeline-text > :is(.timeline-early,.timeline-current) {
+    margin-left: auto;
+    margin-right: var(--content-gutter);
+  }
+}
+@media (max-width: 600px) {
+  body { --content-gutter: 24px; }
+  body > .welcome { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Clearer plain arrows with comfortable hit areas. */
+body > .info-carousel :is(.prev-info,.next-info),
+.gallery-full-info .gallery > :is(.prev,.next) {
+  flex-basis: 44px;
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  background: transparent;
+}
+body > .info-carousel :is(.prev-info,.next-info) img,
+.gallery-full-info .gallery > :is(.prev,.next) img {
+  width: 24px;
+  height: 24px;
+}
+.gallery-full .gallery > :is(.prev,.next) {
+  flex: 0 0 24px;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+@media (max-width: 600px) {
+  body > .info-carousel :is(.prev-info,.next-info) img,
+  .gallery-full-info .gallery > :is(.prev,.next) img {
+    width: 20px;
+    height: 20px;
+  }
+  body > .info-carousel :is(.prev-info,.next-info),
+  .gallery-full-info .gallery > :is(.prev,.next) {
+    padding: 12px;
+  }
+}
+
+/* Full-bleed gallery background with an inset, generously spaced content row. */
+body > :is(.gallery-full,.gallery-full-info) {
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 80px 0;
+}
+body > :is(.gallery-full,.gallery-full-info) > .gallery {
+  position: relative;
+  left: auto;
+  right: auto;
+  width: calc(100% - 2 * var(--content-gutter));
+  margin-inline: auto;
+  z-index: 1;
+}
+body > :is(.gallery-full,.gallery-full-info) > .gallery-background {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  object-fit: fill;
+  z-index: 0;
+  pointer-events: none;
+}
+@media (max-width: 600px) {
+  body > :is(.gallery-full,.gallery-full-info) { padding-block: 56px; }
+}
+
+/* More space above and below the gallery images, inside the full-width art. */
+body > :is(.gallery-full,.gallery-full-info) {
+  padding-top: 144px;
+  padding-bottom: 144px;
+}
+@media (max-width: 600px) {
+  body > :is(.gallery-full,.gallery-full-info) {
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+}
+
+/* Reserve heading space below the ornament, without moving it over later text. */
+.timeline-text > .timeline-header {
+  position: static;
+  margin-top: 0;
+  margin-bottom: 0.67em;
+  padding-top: 8vw;
+}
+@media (min-width: 1000px) {
+  .timeline-text > .timeline-header {
+    padding-top: calc(max(4.431217vw, 7.419712svh) + 40px);
+  }
+}
+
+/* Welcome heading starts level with its companion image. */
+body > .welcome { align-items: start; }
+.welcome > .welcome-text { margin-top: 0; margin-bottom: 0; }
+.welcome > .welcome-image { display: block; height: auto; }
+.welcome-text > h2 {
+  margin-top: 0;
+  font-size: clamp(28px, 2.4vw, 38px);
+  line-height: 1.2;
+}
+
+/* Mobile menu controls share the page's horizontal inset. */
+@media (max-width: 600px) {
+  header > .hamburger-button {
+    flex: 0 0 32px;
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    margin: 0;
+  }
+  header .mobile-overlay {
+    box-sizing: border-box;
+    padding-inline: var(--content-gutter);
+  }
+  header .close-button {
+    right: var(--content-gutter);
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+  }
+}
+
+/* Improve mobile paragraph readability. */
+@media (max-width: 600px) {
+  p {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+}
+
+/* Original-size ornaments form the overlap between mobile sections. */
+@media (max-width: 600px) {
+  body { --decor-height: calc(100vw * 46 / 1512); }
+  body > :is(.gallery-full,.gallery-full-info) {
+    isolation: isolate;
+    z-index: 1;
+    background-color: transparent;
+    background-image: url('../assets/gallery-decor-top.svg'),
+      url('../assets/gallery-decor-bottom.svg'),
+      linear-gradient(#E67529, #E67529);
+    background-position: center top, center bottom, center;
+    background-size: 100% var(--decor-height), 100% var(--decor-height),
+      100% calc(100% - 2 * var(--decor-height) + 2px);
+    background-repeat: no-repeat;
+  }
+  body > :is(.gallery-full,.gallery-full-info) > .gallery-background { display: none; }
+  body > .gallery-full + .home-banner {
+    /* Include the next image's transparent upper edge in the overlap. */
+    margin-top: calc(-1 * var(--decor-height) - 2.913908vw - 1px);
+    z-index: 0;
+  }
+  .about-cover > .info-sections {
+    margin-top: calc(-1 * var(--decor-height));
+  }
+  body > .info-carousel {
+    margin-top: calc(-1 * var(--decor-height));
+  }
+  body > .gallery-full-info {
+    margin-top: calc(-1 * var(--decor-height));
+  }
+}
+
+/* Image track follows the mobile gutter; arrows sit just outside it. */
+@media (max-width: 600px) {
+  body > :is(.gallery-full,.gallery-full-info) > .gallery {
+    display: block;
+  }
+  body > :is(.gallery-full,.gallery-full-info) .gallery-container {
+    width: 100%;
+  }
+  body > :is(.gallery-full,.gallery-full-info) .gallery > :is(.prev,.next) {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 32px;
+    padding: 0;
+    margin: 0;
+    object-fit: contain;
+    background: transparent;
+  }
+  body > :is(.gallery-full,.gallery-full-info) .gallery > .prev {
+    left: -22px;
+    right: auto;
+  }
+  body > :is(.gallery-full,.gallery-full-info) .gallery > .next {
+    left: auto;
+    right: -22px;
+  }
+  body > .gallery-full-info .gallery > :is(.prev,.next) img {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* All mobile opening banners match About's native 16:9 video height. */
+@media (max-width: 600px) {
+  body { --mobile-banner-height: 56.25vw; }
+  body > .hero {
+    position: relative;
+    height: var(--mobile-banner-height);
+    margin-top: 15vw;
+  }
+  body > .hero > .hero-image,
+  body > .header-image,
+  .about-cover > .info-video {
+    display: block;
+    width: 100%;
+    height: var(--mobile-banner-height);
+    min-height: 0;
+    object-fit: cover;
+  }
+  body > .hero > .hero-image { margin: 0; }
+  body > .header-image,
+  .about-cover > .info-video { margin-top: 15vw; }
+  body > .header-image { object-position: center bottom; }
+  body > .hero > .hero-banner { top: 60px; }
+}
+
+/* About cards share the mobile carousel's 56px vertical content inset. */
+@media (max-width: 600px) {
+  .about-cover > .info-sections {
+    box-sizing: border-box;
+    border-style: solid;
+    border-width: var(--decor-height) 0;
+    border-image-source: url('../assets/info-sections-background.svg');
+    border-image-slice: 44 0 45 fill;
+    border-image-repeat: stretch;
+    padding-block: calc(56px - var(--decor-height));
+  }
+  .about-cover > .info-sections > .info-sections-background {
+    display: none;
+  }
+}
+
+/* Single-image mobile carousel controls sit near the viewport edges. */
+@media (max-width: 600px) {
+  body > .info-carousel :is(.prev-info,.next-info) {
+    width: 32px;
+    height: 44px;
+    padding: 6px;
+  }
+  body > .info-carousel .prev-info { left: 0; }
+  body > .info-carousel .next-info { right: 0; }
+}
+
+/* Shared footer: logo and social icons only. */
+body > .footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  padding-block: 40px;
+}
+.footer > .logo-h-footer {
+  display: block;
+  width: clamp(160px, 18vw, 240px);
+  height: auto;
+}
+.footer > .social-group {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: auto;
+  height: auto;
+  padding: 0;
+}
+.footer .socials {
+  display: block;
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  margin: 0;
+}
+@media (max-width: 600px) {
+  body > .footer {
+    flex-direction: column;
+    gap: 24px;
+    padding-block: 32px;
+  }
+  .footer > .logo-h-footer { width: 180px; }
+}
+
+/* Desktop opening banners use 80vh; smaller screens retain prior sizing. */
+@media (min-width: 1000px) {
+  body > .hero {
+    position: relative;
+    height: 80vh;
+    min-height: 0;
+  }
+  body > .hero > .hero-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    object-fit: cover;
+  }
+  body > .header-image,
+  .about-cover > video.info-video {
+    display: block;
+    width: 100%;
+    height: 80vh;
+    min-height: 0;
+    object-fit: cover;
+  }
+}
+
+/* Keep the homepage image's built-in bottom ornament inside its cover crop. */
+@media (min-width: 1000px) {
+  body > .hero > .hero-image { object-position: center bottom; }
+}
+
+/* Homepage desktop cover gets a little more height. */
+@media (min-width: 1000px) {
+  body > .hero { height: 90vh; }
+}

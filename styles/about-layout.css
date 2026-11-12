@@ -1,0 +1,215 @@
+/* A single layered section overlaps the video and reserves its own height. */
+.about-cover > .info-sections {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+  justify-items: center;
+  width: 100%;
+  margin-top: -15vw;
+  isolation: isolate;
+}
+.about-cover > .info-sections > .info-sections-background {
+  position: relative;
+  grid-area: 1 / 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  z-index: 0;
+  pointer-events: none;
+}
+.about-cover > .info-sections > .info-cards {
+  position: relative;
+  grid-area: 1 / 1;
+  width: 80%;
+  min-width: 0;
+  height: auto;
+  z-index: 1;
+}
+.info-cards > :is(.info-card,.info-card-history) {
+  position: relative;
+  min-width: 0;
+}
+.info-cards :is(.info-card-text,.info-card-text-a) {
+  top: auto;
+  bottom: 16px;
+  left: 0;
+  right: 0;
+  margin: 0;
+  text-align: center;
+}
+body > .info-carousel {
+  position: relative;
+  z-index: 0;
+}
+body > .gallery-full-info {
+  z-index: 1;
+}
+@media (max-width: 600px) {
+  .info-cards :is(.info-card-text,.info-card-text-a) {
+    bottom: 8px;
+    font-size: 16px;
+  }
+}
+
+/* Desktop: video above; only the next section's top ornament overlaps its edge. */
+.about-cover { display: contents; }
+@media (min-width: 1000px) {
+  .about-cover {
+    position: relative;
+    display: block;
+    isolation: isolate;
+    z-index: 1;
+    width: 100%;
+    height: auto;
+  }
+  .about-cover > video.info-video {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    min-height: 0;
+    margin: 0;
+    object-fit: cover;
+  }
+  .about-cover > .info-sections {
+    position: relative;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    width: 100%;
+    /* The source SVG's decorative top is 44 units in a 1512-wide canvas.
+       Its solid green body begins exactly at the first viewport's bottom. */
+    margin-top: -2.910053vw;
+  }
+  body > .info-carousel {
+    /* Cover the 45-unit decorative footer and its antialiased edge. */
+    margin-top: calc(-2.976191vw - 2px);
+    z-index: 0;
+  }
+}
+
+/* Layered automatic carousel; same-size images reserve a stable height. */
+body > .info-carousel .info-carousel-images {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  position: relative;
+}
+body > .info-carousel .info-carousel-image {
+  display: block;
+  grid-area: 1 / 1;
+  width: 100%;
+  height: auto;
+  opacity: 0;
+  transition: opacity 1200ms ease-in-out;
+}
+body > .info-carousel .info-carousel-image.active {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  body > .info-carousel .info-carousel-image { transition: none; }
+}
+
+/* Directional slide motion with compact controls. */
+body > .info-carousel .info-carousel-images {
+  overflow: hidden;
+}
+body > .info-carousel .info-carousel-image {
+  opacity: 1;
+  visibility: hidden;
+  transform: translateX(0);
+  transition: none;
+}
+body > .info-carousel .info-carousel-image.active { visibility: visible; }
+body > .info-carousel :is(.prev-info,.next-info) {
+  display: grid;
+  place-items: center;
+  appearance: none;
+  width: 36px;
+  height: 36px;
+  padding: 9px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255,254,239,.8);
+  z-index: 5;
+}
+body > .info-carousel :is(.prev-info,.next-info) img {
+  display: block;
+  width: 18px;
+  height: 18px;
+}
+body > .info-carousel .prev-info { left: 16px; }
+body > .info-carousel .next-info { right: 16px; }
+@media (max-width: 600px) {
+  body > .info-carousel :is(.prev-info,.next-info) {
+    width: 32px;
+    height: 32px;
+    padding: 8px;
+  }
+  body > .info-carousel :is(.prev-info,.next-info) img {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* Gallery controls match the compact carousel controls. */
+.gallery-full-info .gallery > :is(.prev,.next) {
+  display: grid;
+  place-items: center;
+  flex: 0 0 36px;
+  width: 36px;
+  height: 36px;
+  padding: 9px;
+  appearance: none;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255,254,239,.8);
+  cursor: pointer;
+}
+.gallery-full-info .gallery > :is(.prev,.next) img {
+  display: block;
+  width: 18px;
+  height: 18px;
+}
+@media (max-width: 600px) {
+  .gallery-full-info .gallery > :is(.prev,.next) {
+    flex-basis: 32px;
+    width: 32px;
+    height: 32px;
+    padding: 8px;
+  }
+  .gallery-full-info .gallery > :is(.prev,.next) img {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* Give the lower gallery real breathing room inside its decorative section. */
+body > .gallery-full-info {
+  display: block;
+  position: relative;
+  padding-block: 64px;
+}
+.gallery-full-info > .gallery {
+  position: relative;
+}
+.gallery-full-info > .gallery-background {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  pointer-events: none;
+  z-index: 0;
+}
+@media (max-width: 600px) {
+  body > .gallery-full-info { padding-block: 40px; }
+}
+
+/* Plain arrow controls without a background. */
+body > .info-carousel :is(.prev-info,.next-info),
+.gallery-full-info .gallery > :is(.prev,.next) {
+  background: transparent;
+}

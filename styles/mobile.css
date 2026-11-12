@@ -1,0 +1,312 @@
+/* Color Palette */
+    /* #FFFEEF = Off White */
+    /* #FFFFFF = White */
+    /* #000000 = Black */
+    /* #E67529 = Orange */
+    /* #C9E2A9 = Teal */
+
+
+/* Basic styling that applies to the whole page */
+    body{
+        font-size: 10px;
+    }
+
+    a{
+        font-size: 16px;
+    }
+
+    h1{
+        font-size: 16px;
+    }
+
+    h2{
+        font-size: 16px;
+    }
+
+/* Header */
+    header{
+        width:100%;
+        padding:3%;
+    }
+
+    /* Mobile Hamburger Menu */
+    nav{
+        display:none;
+    }
+
+    .overlay-nav{
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        text-align:center;
+        gap:10px;
+    }
+
+    .overlay-nav-sub{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap:5%;
+    }
+
+    a .sub{
+        font-size: 12px;
+        font-weight: 200;
+    }
+    
+    .hamburger-button{
+        display:block;
+        width:10%;
+        margin-right:10%;
+    }
+
+    .mobile-overlay{
+        display:flex;
+        position:fixed;
+        top:0;
+        left:0;
+        width:100%;
+        height:100vh; /* There can be different viewports */
+        background-color: #E67529;
+        z-index:1000;
+        justify-content:center;
+
+        transform: translateX(100%);
+        transition: transform 0.5s ease;
+    }
+
+    .overlay-open{
+        transform: translateX(0);
+    }
+
+    .close-button{
+        position:fixed;
+        top:48px;
+        right:38px;
+        width:10%;
+    }
+
+
+/* Footer */   
+    .footer-left{
+        width: 30%;
+        height: 100%;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .social-group{
+        width: 100%;
+        height: auto;
+        padding-top: 5%;
+    }
+
+    .footer-right{
+        width: 45%;
+        height: auto;
+    }
+
+    .footer-pages{
+        width: 100%;
+        height: auto;
+    }
+
+    .footer-subpages{
+        height:75%;
+        padding-top: 3%;
+    }
+
+    .footer-subpages a{
+        font-size: 12px;
+    }
+
+/* Icons */
+    .logo-h-footer{
+        width: 100%;
+        height: auto;
+    }
+
+
+/* Home Sections */
+    /* hero */
+        .hero{
+            width: 100%;
+            height: auto;
+        }
+        
+        .hero-banner{
+            top:120px;
+        }
+
+        .hero-text{
+            font-size: 20px;
+            color:black;
+        }
+
+        .hero-image{
+            margin-top: 15%;
+            width: 100%;
+            height: auto;
+        }
+    
+    /* welcome section */
+        .welcome{
+            width: 90%;
+            height: auto;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding:0%;
+        }
+        
+        .welcome-image{
+            width: 80%;
+            height:50%;
+        }
+
+        .welcome-text{
+            width: 80%;
+            height: auto;
+
+            display: flex;
+            flex-direction: column;
+            margin: 5%;
+        }
+    
+    /* mini gallery */
+        .gallery-card{
+            min-width: 100px; 
+            flex: 0 0 calc((100% - 32px) / 3);
+        }
+
+    /* banner */
+        .home-banner{
+            width: 100%;
+            height: auto;
+            margin-top: -8%;
+        }
+
+        .home-banner-image{
+            width: 100%;
+            height: auto;
+        }
+
+
+/* Information Page Sections */
+    /* title/heading */
+        .info-video{
+            margin-top: 15%;
+        }
+
+    /* section cards */
+        .info-sections{
+           margin-top: -15%;
+        }
+        
+        .info-cards{
+            width: 80%;
+            height: auto;
+        }
+
+        .info-card{
+            width: 30%;
+            height: auto;
+        }
+
+        .info-card-history{
+            width: 30%;
+            height: auto;
+        }
+
+        .info-card-text{
+            top: 60%;
+        }
+        
+        .info-card-text-a{
+            font-size: 16px;
+            top: 70%;
+        }
+
+        .prev-info {
+            display:none;
+        }
+
+        .next-info {
+            display:none;
+        }
+
+
+/* History Page Sections */
+    /* header */
+        .header-image{
+            width:100%;
+            height:auto;
+            margin-top: 10%;
+        }
+
+    /* timeline */
+        .timeline-header{
+            font-size: 30px;
+            margin-top:2%;
+        }
+        
+        .timeline-early{
+            width: 35%;
+            margin-left: 55%;
+            margin-top:6%;
+            color:#ffffff;
+            align-items: center;
+        }
+
+        .timeline-early p{
+            display: none;
+        }
+
+        .timeline-mid{
+            width: 35%;
+            margin-left: 7%;
+            margin-top:30%;
+            color:#000000;
+            align-items: center;
+        }
+
+        .timeline-mid p{
+            display: none;
+        }
+
+        .timeline-current{
+            width: 35%;
+            margin-left: 55%;
+            margin-top:20%;
+            color:#000000;
+            align-items: center;
+        }
+
+        .timeline-current p{
+            display: none;
+        }
+
+        .timeline-white{
+            color:#ffffff;
+            font-size: 30px;
+        }
+        
+        .timeline-black{
+            color:#000000;
+            font-size: 30px;
+        }
+
+        .learn-more{
+            display:block;
+            
+        }
+
+        .timeline-background{
+            width:100%;
+            height:auto;
+            position: relative;
+            z-index: -1;
+            margin-top: -5%;
+        }
